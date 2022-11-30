@@ -59,7 +59,7 @@ warning_re = re.compile(r'''(.*/|)([^/]+\.[a-z]+:\d+):(\d+:)? warning:''')
 def interpret_warning(line):
     """Decode the message from gcc.  The messages we care about have a filename, and a warning"""
     line = line.rstrip(b'\n')
-    m = warning_re.match(line)
+    m = warning_re.match(line.decode())
     if m and m.group(2) not in allowed_warnings:
         print("error, forbidden warning:", m.group(2))
 
